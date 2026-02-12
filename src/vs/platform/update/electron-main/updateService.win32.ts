@@ -1,0 +1,497 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+import { ChildProcess, spawn } from 'child_process';
+import { existsSync, unlinkSync } from 'fs';
+import { mkdir, readFile, unlink } from 'fs/promises';
+import { tmpdir } from 'os';
+import { app } from 'electron';
+import { Delayer, timeout } from '../../../base/common/async.js';
+import { VSBuffer } from '../../../base/common/buffer.js';
+import { CancellationToken } from '../../../base/common/cancellation.js';
+import { memoize } from '../../../base/common/decorators.js';
+import { hash } from '../../../base/common/hash.js';
+import * as path from '../../../base/common/path.js';
+import { transform } from '../../../base/common/stream.js';
+import { URI } from '../../../base/common/uri.js';
+import { checksum } from '../../../base/node/crypto.js';
+import * as pfs from '../../../base/node/pfs.js';
+import { killTree } from '../../../base/node/processes.js';
+import { IConfigurationService } from '../../configuration/common/configuration.js';
+import { IEnvironmentMainService } from '../../environment/electron-main/environmentMainService.js';
+import { IFileService } from '../../files/common/files.js';
+import { ILifecycleMainService, IRelaunchHandler, IRelaunchOptions } from '../../lifecycle/electron-main/lifecycleMainService.js';
+import { ILogService } from '../../log/common/log.js';
+import { INativeHostMainService } from '../../native/electron-main/nativeHostMainService.js';
+import { IProductService } from '../../product/common/productService.js';
+import { asJson, IRequestService } from '../../request/common/request.js';
+import { ITelemetryService } from '../../telemetry/common/telemetry.js';
+import { AvailableForDownload, DisablementReason, IUpdate, State, StateType, UpdateType } from '../common/update.js';
+import { AbstractUpdateService, createUpdateURL, IUpdateURLOptions, UpdateErrorClassification } from './abstractUpdateService.js';
+import { IMeteredConnectionService } from '../../meteredConnection/common/meteredConnection.js';
+
+async function pollUntil(fn: () => boolean, millis = 1000): Promise<void> {
+	while (!fn()) {
+		await timeout(millis);
+	}
+}
+
+interface IAvailableUpdate {
+	packagePath: string;
+	updateFilePath?: string;
+	/** File path used to signal the Inno Setup installer to cancel */
+	cancelFilePath?: string;
+	/** The Inno Setup process that is applying the update in the background */
+	updateProcess?: ChildProcess;
+}
+
+let _updateType: UpdateType | undefined = undefined;
+function getUpdateType(): UpdateType {
+	if (typeof _updateType === 'undefined') {
+		_updateType = existsSync(path.join(path.dirname(process.execPath), 'unins000.exe'))
+			? UpdateType.Setup
+			: UpdateType.Archive;
+	}
+
+	return _updateType;
+}
+
+export class Win32UpdateService extends AbstractUpdateService implements IRelaunchHandler {
+
+	private availableUpdate: IAvailableUpdate | undefined;
+
+	@memoize
+	get cachePath(): Promise<string> {
+		const result = path.join(tmpdir(), `vscode-${this.productService.quality}-${this.productService.target}-${process.arch}`);
+		return mkdir(result, { recursive: true }).then(() => result);
+	}
+
+	constructor(
+		@ILifecycleMainService lifecycleMainService: ILifecycleMainService,
+		@IConfigurationService configurationService: IConfigurationService,
+		@ITelemetryService private readonly telemetryService: ITelemetryService,
+		@IEnvironmentMainService environmentMainService: IEnvironmentMainService,
+		@IRequestService requestService: IRequestService,
+		@ILogService logService: ILogService,
+		@IFileService private readonly fileService: IFileService,
+		@INativeHostMainService private readonly nativeHostMainService: INativeHostMainService,
+		@IProductService productService: IProductService,
+		@IMeteredConnectionService meteredConnectionService: IMeteredConnectionService,
+	) {
+		super(lifecycleMainService, configurationService, environmentMainService, requestService, logService, productService, meteredConnectionService, true);
+
+		lifecycleMainService.setRelaunchHandler(this);
+	}
+
+	handleRelaunch(options?: IRelaunchOptions): boolean {
+		if (options?.addArgs || options?.removeArgs) {
+			return false; // we cannot apply an update and restart with different args
+		}
+
+		if (this.state.type !== StateType.Ready || !this.availableUpdate) {
+			return false; // we only handle the relaunch when we have a pending update
+		}
+
+		this.logService.trace('update#handleRelaunch(): running raw#quitAndInstall()');
+		this.doQuitAndInstall();
+
+		return true;
+	}
+
+	protected override async initialize(): Promise<void> {
+		if (this.productService.win32VersionedUpdate) {
+			const cachePath = await this.cachePath;
+			app.setPath('appUpdate', cachePath);
+			try {
+				await unlink(path.join(cachePath, 'session-ending.flag'));
+			} catch { }
+		}
+
+		if (this.productService.target === 'user' && await this.nativeHostMainService.isAdmin(undefined)) {
+			this.setState(State.Disabled(DisablementReason.RunningAsAdmin));
+			this.logService.info('update#ctor - updates are disabled due to running as Admin in user setup');
+			return;
+		}
+
+		await super.initialize();
+	}
+
+	protected override async postInitialize(): Promise<void> {
+		if (!this.productService.win32VersionedUpdate) {
+			return;
+		}
+		// Check for pending update from previous session
+		// This can happen if the app is quit right after the update has been
+		// downloaded and before the update has been applied.
+		const exePath = app.getPath('exe');
+		const exeDir = path.dirname(exePath);
+		const updatingVersionPath = path.join(exeDir, 'updating_version');
+		if (await pfs.Promises.exists(updatingVersionPath)) {
+			try {
+				const updatingVersion = (await readFile(updatingVersionPath, 'utf8')).trim();
+				this.logService.info(`update#doCheckForUpdates - application was updating to version ${updatingVersion}`);
+				const updatePackagePath = await this.getUpdatePackagePath(updatingVersion);
+				if (await pfs.Promises.exists(updatePackagePath)) {
+					await this._applySpecificUpdate(updatePackagePath);
+					this.logService.info(`update#doCheckForUpdates - successfully applied update to version ${updatingVersion}`);
+				}
+			} catch (e) {
+				this.logService.error(`update#doCheckForUpdates - could not read ${updatingVersionPath}`, e);
+			} finally {
+				// updatingVersionPath will be deleted by inno setup.
+			}
+		} else {
+			const fastUpdatesEnabled = this.configurationService.getValue('update.enableWindowsBackgroundUpdates');
+			// GC for background updates in system setup happens via inno_setup since it requires
+			// elevated permissions.
+			if (fastUpdatesEnabled && this.productService.target === 'user' && this.productService.commit) {
+				const versionedResourcesFolder = this.productService.commit.substring(0, 10);
+				const innoUpdater = path.join(exeDir, versionedResourcesFolder, 'tools', 'inno_updater.exe');
+				await new Promise<void>(resolve => {
+					const child = spawn(innoUpdater, ['--gc', exePath, versionedResourcesFolder], {
+						stdio: ['ignore', 'ignore', 'ignore'],
+						windowsHide: true,
+						timeout: 2 * 60 * 1000
+					});
+					child.once('exit', () => resolve());
+				});
+			}
+		}
+	}
+
+	protected buildUpdateFeedUrl(quality: string, commit: string, options?: IUpdateURLOptions): string | undefined {
+		let platform = `win32-${process.arch}`;
+
+		if (getUpdateType() === UpdateType.Archive) {
+			platform += '-archive';
+		} else if (this.productService.target === 'user') {
+			platform += '-user';
+		}
+
+		return createUpdateURL(this.productService.updateUrl!, platform, quality, commit, options);
+	}
+
+	protected doCheckForUpdates(explicit: boolean, pendingCommit?: string): void {
+		if (!this.quality) {
+			return;
+		}
+
+		const background = !explicit && !this.shouldDisableProgressiveReleases();
+		const url = this.buildUpdateFeedUrl(this.quality, pendingCommit ?? this.productService.commit!, { background });
+
+		// Only set CheckingForUpdates if we're not already in Overwriting state
+		if (this.state.type !== StateType.Overwriting) {
+			this.setState(State.CheckingForUpdates(explicit));
+		}
+
+		this.requestService.request({ url }, CancellationToken.None)
+			.then<IUpdate | null>(asJson)
+			.then(update => {
+				const updateType = getUpdateType();
+
+				if (!update || !update.url || !update.version || !update.productVersion) {
+					// If we were checking for an overwrite update and found nothing newer,
+					// restore the Ready state with the pending update
+					if (this.state.type === StateType.Overwriting) {
+						this._overwrite = false;
+						this.setState(State.Ready(this.state.update, this.state.explicit, false));
+					} else {
+						this.setState(State.Idle(updateType));
+					}
+					return Promise.resolve(null);
+				}
+
+				if (updateType === UpdateType.Archive) {
+					this.setState(State.AvailableForDownload(update));
+					return Promise.resolve(null);
+				}
+
+				// When connection is metered and this is not an explicit check,
+				// show update is available but don't start downloading
+				if (!explicit && this.meteredConnectionService.isConnectionMetered) {
+					this.logService.info('update#doCheckForUpdates - update available but skipping download because connection is metered');
+					this.setState(State.AvailableForDownload(update));
+					return Promise.resolve(null);
+				}
+
+				const startTime = Date.now();
+				this.setState(State.Downloading(update, explicit, this._overwrite, 0, undefined, startTime));
+
+				return this.cleanup(update.version).then(() => {
+					return this.getUpdatePackagePath(update.version).then(updatePackagePath => {
+						return pfs.Promises.exists(updatePackagePath).then(exists => {
+							if (exists) {
+								return Promise.resolve(updatePackagePath);
+							}
+
+							const downloadPath = `${updatePackagePath}.tmp`;
+
+							return this.requestService.request({ url: update.url }, CancellationToken.None)
+								.then(context => {
+									// Get total size from Content-Length header
+									const contentLengthHeader = context.res.headers['content-length'];
+									const contentLength = typeof contentLengthHeader === 'string' ? contentLengthHeader : undefined;
+									const totalBytes = contentLength ? parseInt(contentLength, 10) : undefined;
+
+									// Track downloaded bytes and update state periodically using Delayer
+									let downloadedBytes = 0;
+									const progressDelayer = new Delayer<void>(500);
+									const progressStream = transform<VSBuffer, VSBuffer>(
+										context.stream,
+										{
+											data: data => {
+												downloadedBytes += data.byteLength;
+												progressDelayer.trigger(() => {
+													this.setState(State.Downloading(update, explicit, this._overwrite, downloadedBytes, totalBytes, startTime));
+												});
+												return data;
+											}
+										},
+										chunks => VSBuffer.concat(chunks)
+									);
+
+									return this.fileService.writeFile(URI.file(downloadPath), progressStream)
+										.finally(() => progressDelayer.dispose());
+								})
+								.then(update.sha256hash ? () => checksum(downloadPath, update.sha256hash) : () => undefined)
+								.then(() => pfs.Promises.rename(downloadPath, updatePackagePath, false /* no retry */))
+								.then(() => updatePackagePath);
+						});
+					}).then(packagePath => {
+						this.availableUpdate = { packagePath };
+						this.saveUpdateMetadata(update);
+						this.setState(State.Downloaded(update, explicit, this._overwrite));
+
+						const fastUpdatesEnabled = this.configurationService.getValue('update.enableWindowsBackgroundUpdates');
+						if (fastUpdatesEnabled && this.productService.target === 'user') {
+							this.doApplyUpdate();
+						} else {
+							this.setState(State.Ready(update, explicit, this._overwrite));
+						}
+					});
+				});
+			})
+			.then(undefined, err => {
+				this.telemetryService.publicLog2<{ messageHash: string }, UpdateErrorClassification>('update:error', { messageHash: String(hash(String(err))) });
+				this.logService.error(err);
+
+				// only show message when explicitly checking for updates
+				const message: string | undefined = explicit ? (err.message || err) : undefined;
+
+				// If we were checking for an overwrite update and it failed,
+				// restore the Ready state with the pending update
+				if (this.state.type === StateType.Overwriting) {
+					this._overwrite = false;
+					this.setState(State.Ready(this.state.update, this.state.explicit, false));
+				} else {
+					this.setState(State.Idle(getUpdateType(), message));
+				}
+			});
+	}
+
+	protected override async doDownloadUpdate(state: AvailableForDownload): Promise<void> {
+		if (state.update.url) {
+			this.nativeHostMainService.openExternal(undefined, state.update.url);
+		}
+		this.setState(State.Idle(getUpdateType()));
+	}
+
+	private async getUpdatePackagePath(version: string): Promise<string> {
+		const cachePath = await this.cachePath;
+		return path.join(cachePath, `CodeSetup-${this.productService.quality}-${version}.exe`);
+	}
+
+	private async cleanup(exceptVersion: string | null = null): Promise<void> {
+		const filter = exceptVersion ? (one: string) => !(new RegExp(`${this.productService.quality}-${exceptVersion}\\.exe$`).test(one)) : () => true;
+
+		const cachePath = await this.cachePath;
+		const versions = await pfs.Promises.readdir(cachePath);
+
+		const promises = versions.filter(filter).map(async one => {
+			try {
+				await unlink(path.join(cachePath, one));
+			} catch (err) {
+				// ignore
+			}
+		});
+
+		await Promise.all(promises);
+	}
+
+	protected override async doApplyUpdate(): Promise<void> {
+		if (this.state.type !== StateType.Downloaded) {
+			return Promise.resolve(undefined);
+		}
+
+		if (!this.availableUpdate) {
+			return Promise.resolve(undefined);
+		}
+
+		const update = this.state.update;
+		const explicit = this.state.explicit;
+		this.setState(State.Updating(update));
+
+		const cachePath = await this.cachePath;
+		const sessionEndFlagPath = path.join(cachePath, 'session-ending.flag');
+		const cancelFilePath = path.join(cachePath, `cancel.flag`);
+		try {
+			await unlink(cancelFilePath);
+		} catch {
+			// ignore
+		}
+
+		this.availableUpdate.updateFilePath = path.join(cachePath, `CodeSetup-${this.productService.quality}-${update.version}.flag`);
+		this.availableUpdate.cancelFilePath = cancelFilePath;
+
+		await pfs.Promises.writeFile(this.availableUpdate.updateFilePath, 'flag');
+		const child = spawn(this.availableUpdate.packagePath,
+			[
+				'/verysilent',
+				'/log',
+				`/update="${this.availableUpdate.updateFilePath}"`,
+				`/sessionend="${sessionEndFlagPath}"`,
+				`/cancel="${cancelFilePath}"`,
+				'/nocloseapplications',
+				'/mergetasks=runcode,!desktopicon,!quicklaunchicon'
+			],
+			{
+				detached: true,
+				stdio: ['ignore', 'ignore', 'ignore'],
+				windowsVerbatimArguments: true
+			}
+		);
+
+		// Track the process so we can cancel it if needed
+		this.availableUpdate.updateProcess = child;
+
+		child.once('exit', () => {
+			this.availableUpdate = undefined;
+			this.setState(State.Idle(getUpdateType()));
+		});
+
+		const readyMutexName = `${this.productService.win32MutexName}-ready`;
+		const mutex = await import('@vscode/windows-mutex');
+
+		// poll for mutex-ready
+		pollUntil(() => mutex.isActive(readyMutexName))
+			.then(() => this.setState(State.Ready(update, explicit, this._overwrite)));
+	}
+
+	protected override async cancelPendingUpdate(): Promise<void> {
+		if (!this.availableUpdate) {
+			return;
+		}
+
+		this.logService.trace('update#cancelPendingUpdate: cancelling pending update');
+		const { updateProcess, updateFilePath, cancelFilePath } = this.availableUpdate;
+
+		if (updateProcess && updateProcess.exitCode === null) {
+			// Remove all listeners to prevent the exit handler from changing state
+			updateProcess.removeAllListeners();
+			const exitPromise = new Promise<boolean>(resolve => updateProcess.once('exit', () => resolve(true)));
+
+			// Write the cancel file to signal Inno Setup to exit gracefully
+			if (cancelFilePath) {
+				try {
+					await pfs.Promises.writeFile(cancelFilePath, 'cancel');
+				} catch (err) {
+					this.logService.warn('update#cancelPendingUpdate: failed to write cancel file', err);
+				}
+			}
+
+			// Wait for the process to exit gracefully, then force-kill if needed
+			const pid = updateProcess.pid;
+			const exited = await Promise.race([exitPromise, timeout(30 * 1000).then(() => false)]);
+			if (pid && !exited) {
+				this.logService.trace('update#cancelPendingUpdate: process did not exit gracefully, killing process tree');
+				await killTree(pid, true);
+			}
+		}
+
+		// Clean up the flag file
+		if (updateFilePath) {
+			try {
+				await unlink(updateFilePath);
+			} catch (err) {
+				// ignore
+			}
+		}
+
+		// Clean up the cancel file
+		if (cancelFilePath) {
+			try {
+				await unlink(cancelFilePath);
+			} catch (err) {
+				// ignore
+			}
+		}
+
+		this.availableUpdate = undefined;
+	}
+
+	protected override doQuitAndInstall(): void {
+		if (this.state.type !== StateType.Ready || !this.availableUpdate) {
+			return;
+		}
+
+		this.logService.trace('update#quitAndInstall(): running raw#quitAndInstall()');
+
+		if (this.availableUpdate.updateFilePath) {
+			unlinkSync(this.availableUpdate.updateFilePath);
+		} else {
+			spawn(this.availableUpdate.packagePath, ['/silent', '/log', '/mergetasks=runcode,!desktopicon,!quicklaunchicon'], {
+				detached: true,
+				stdio: ['ignore', 'ignore', 'ignore']
+			});
+		}
+	}
+
+	private async saveUpdateMetadata(update: IUpdate): Promise<void> {
+		try {
+			const cachePath = await this.cachePath;
+			const metadataPath = path.join(cachePath, 'update-metadata.json');
+			await pfs.Promises.writeFile(metadataPath, JSON.stringify(update));
+		} catch (e) {
+			this.logService.error('update#saveUpdateMetadata: failed to save', e);
+		}
+	}
+
+	private async loadUpdateMetadata(): Promise<IUpdate | undefined> {
+		try {
+			const cachePath = await this.cachePath;
+			const metadataPath = path.join(cachePath, 'update-metadata.json');
+			if (await pfs.Promises.exists(metadataPath)) {
+				const content = await readFile(metadataPath, 'utf8');
+				return JSON.parse(content);
+			}
+		} catch (e) {
+			this.logService.error('update#loadUpdateMetadata: failed to load', e);
+		}
+		return undefined;
+	}
+
+	protected override getUpdateType(): UpdateType {
+		return getUpdateType();
+	}
+
+	override async _applySpecificUpdate(packagePath: string): Promise<void> {
+		if (this.state.type !== StateType.Idle) {
+			return;
+		}
+
+		const fastUpdatesEnabled = this.configurationService.getValue('update.enableWindowsBackgroundUpdates');
+		const update: IUpdate = await this.loadUpdateMetadata() ?? { version: 'unknown', productVersion: 'unknown' };
+
+		this.setState(State.Downloading(update, true, false));
+		this.availableUpdate = { packagePath };
+		this.setState(State.Downloaded(update, true, false));
+
+		if (fastUpdatesEnabled && this.productService.target === 'user') {
+			this.doApplyUpdate();
+		} else {
+			this.setState(State.Ready(update, true, false));
+		}
+	}
+}
