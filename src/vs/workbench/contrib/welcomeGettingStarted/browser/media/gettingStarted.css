@@ -8,6 +8,11 @@
 	background-image: url('../../../../browser/media/code-icon.svg');
 }
 
+.vs .file-icons-enabled .show-file-icons .vscode_getting_started_page-name-file-icon.file-icon::before,
+.hc-light .file-icons-enabled .show-file-icons .vscode_getting_started_page-name-file-icon.file-icon::before {
+	background-image: url('../../../../browser/media/ride-light.svg');
+}
+
 .monaco-workbench .part.editor > .content .gettingStartedContainer {
 	box-sizing: border-box;
 	line-height: 16px;

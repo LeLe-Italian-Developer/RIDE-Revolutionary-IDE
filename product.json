@@ -1,7 +1,7 @@
 {
 	"nameShort": "RIDE",
 	"nameLong": "RIDE - Revolutionary IDE",
-	"applicationName": "ride",
+	"applicationName": "RIDE",
 	"dataFolderName": ".ride",
 	"win32MutexName": "ride",
 	"licenseName": "MIT",
