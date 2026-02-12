@@ -1,14 +1,12 @@
-<!-- BEGIN MICROSOFT SECURITY.MD V1.0.0 BLOCK -->
+# Security Policy
 
-## Security
+## Supported Versions
+We support the latest version of RIDE.
 
-Microsoft takes the security of our software products and services seriously, which
-includes all source code repositories in our GitHub organizations.
+## Reporting a Vulnerability
+If you discover a security vulnerability in RIDE, please report it by creating an issue in our GitHub repository or contacting the maintainer directly.
 
-**Please do not report security vulnerabilities through public GitHub issues.**
+Since RIDE is based on VS Code, vulnerabilities in the core editor should likely be reported to Microsoft via the [MSRC](https://msrc.microsoft.com/create-report).
 
-For security reporting information, locations, contact information, and policies,
-please review the latest guidance for Microsoft repositories at
-[https://aka.ms/SECURITY.md](https://aka.ms/SECURITY.md).
-
-<!-- END MICROSOFT SECURITY.MD BLOCK -->
+## Security Updates
+We aim to merge upstream changes from VS Code regularly to ensure RIDE receives the latest security patches.
