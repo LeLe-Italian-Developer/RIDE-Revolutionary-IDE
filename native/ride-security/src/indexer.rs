@@ -353,6 +353,7 @@ mod tests {
     use super::*;
     use std::fs;
     use std::io::Write;
+    use std::path::PathBuf;
 
     fn create_test_workspace() -> PathBuf {
         let dir = std::env::temp_dir().join("ride_test_indexer");

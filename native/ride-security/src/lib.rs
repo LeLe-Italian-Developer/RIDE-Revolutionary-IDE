@@ -34,6 +34,23 @@ mod extension_verify;
 mod syntax;
 mod compression;
 
+// Phase 8: Base utilities
+mod strings;
+mod paths;
+mod collections;
+mod glob_engine;
+mod hash_utils;
+mod lifecycle;
+mod json_parser;
+mod platform_utils;
+mod color;
+mod date;
+mod types;
+mod buffer;
+mod label;
+mod marshalling;
+mod async_utils;
+
 pub use crypto::*;
 pub use integrity::*;
 pub use network::*;
@@ -47,3 +64,33 @@ pub use config::*;
 pub use extension_verify::*;
 pub use syntax::*;
 pub use compression::*;
+
+// Phase 8: Base utilities
+pub use strings::*;
+pub use paths::*;
+pub use collections::*;
+pub use glob_engine::*;
+pub use hash_utils::*;
+pub use lifecycle::*;
+pub use json_parser::*;
+pub use platform_utils::*;
+pub use color::*;
+pub use date::*;
+pub use types::*;
+pub use buffer::*;
+pub use label::*;
+pub use marshalling::*;
+pub use async_utils::*;
+
+// Phase 9: Base Node utilities
+mod pfs;
+mod zip_utils;
+mod ps;
+mod terminals;
+mod ports;
+
+pub use pfs::*;
+pub use zip_utils::*;
+pub use ps::*;
+pub use terminals::*;
+pub use ports::*;
