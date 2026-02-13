@@ -7,9 +7,8 @@ import type { IExtendedConfiguration, IExtendedTelemetryItem, ITelemetryItem, IT
 import type { IChannelConfiguration, IXHROverride, PostChannel } from '@microsoft/1ds-post-js';
 import { importAMDNodeModule } from '../../../amdX.js';
 import { onUnexpectedError } from '../../../base/common/errors.js';
-import { mixin } from '../../../base/common/objects.js';
 import { isWeb } from '../../../base/common/platform.js';
-import { ITelemetryAppender, validateTelemetryData } from './telemetryUtils.js';
+import { ITelemetryAppender } from './telemetryUtils.js';
 
 // Interface type which is a subset of @microsoft/1ds-core-js AppInsightsCore.
 // Allows us to more easily build mock objects for testing as the interface is quite large and we only need a few properties.
@@ -19,8 +18,9 @@ export interface IAppInsightsCore {
 	unload(isAsync: boolean, unloadComplete: (unloadState: ITelemetryUnloadState) => void): void;
 }
 
-const endpointUrl = 'https://mobile.events.data.microsoft.com/OneCollector/1.0';
-const endpointHealthUrl = 'https://mobile.events.data.microsoft.com/ping';
+// RIDE: Telemetry endpoints disabled for privacy
+const endpointUrl = '';
+const endpointHealthUrl = '';
 
 async function getClient(instrumentationKey: string, addInternalFlag?: boolean, xhrOverride?: IXHROverride): Promise<IAppInsightsCore> {
 	// eslint-disable-next-line local/code-amd-node-module
@@ -83,7 +83,7 @@ export abstract class AbstractOneDataSystemAppender implements ITelemetryAppende
 
 	constructor(
 		private readonly _isInternalTelemetry: boolean,
-		private _eventPrefix: string,
+		_eventPrefix: string,
 		private _defaultData: { [key: string]: unknown } | null,
 		iKeyOrClientFactory: string | (() => IAppInsightsCore), // allow factory function for testing
 		private _xhrOverride?: IXHROverride
@@ -126,22 +126,8 @@ export abstract class AbstractOneDataSystemAppender implements ITelemetryAppende
 	}
 
 	log(eventName: string, data?: unknown): void {
-		if (!this._aiCoreOrKey) {
-			return;
-		}
-		data = mixin(data, this._defaultData);
-		const validatedData = validateTelemetryData(data);
-		const name = this._eventPrefix + '/' + eventName;
-
-		try {
-			this._withAIClient((aiClient) => {
-				aiClient.pluginVersionString = validatedData?.properties.version ?? 'Unknown';
-				aiClient.track({
-					name,
-					baseData: { name, properties: validatedData?.properties, measurements: validatedData?.measurements }
-				});
-			});
-		} catch { }
+		// RIDE: Telemetry logging completely disabled for privacy
+		return;
 	}
 
 	flush(): Promise<void> {

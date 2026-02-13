@@ -25,3 +25,9 @@ product.overrides.json
 .vscode-test
 vscode-telemetry-docs/
 test-output.json
+
+# Build artifacts (large binaries)
+*.dmg
+build/dmg-staging/
+native/ride-security/target/
+*.node

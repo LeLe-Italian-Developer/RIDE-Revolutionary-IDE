@@ -1,0 +1,15 @@
+{
+	"name": "@ride/security",
+	"version": "0.1.0",
+	"private": true,
+	"main": "index.js",
+	"napi": {
+		"name": "ride-security",
+		"triples": {
+			"defaults": true
+		}
+	},
+	"scripts": {
+		"build": "cargo build --release && cp target/release/libride_security.dylib ../../ride-security.darwin-arm64.node 2>/dev/null; cp target/release/libride_security.so ../../ride-security.linux-x64-gnu.node 2>/dev/null; cp target/release/ride_security.dll ../../ride-security.win32-x64-msvc.node 2>/dev/null; echo 'Build complete'"
+	}
+}
