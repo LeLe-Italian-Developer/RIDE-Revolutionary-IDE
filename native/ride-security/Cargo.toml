@@ -1,6 +1,6 @@
 [package]
 name = "ride-security"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2024"
 
 [lib]
@@ -9,11 +9,35 @@ crate-type = ["cdylib"]
 [dependencies]
 napi = { version = "2", features = ["full"] }
 napi-derive = "2"
+
+# Crypto & Security
 aes-gcm = "0.10"
 sha2 = "0.10"
 rand = "0.8"
 hex = "0.4"
+
+# Network & URL
 url = "2"
+
+# File System
+notify = "7"
+ignore = "0.4"
+
+# Search & Text Processing
+regex = "1"
+rayon = "1.10"
+similar = "2"
+
+# Compression
+zstd = "0.13"
+zip = "2"
+
+# Data & Config
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# Path handling
+glob = "0.3"
 
 [build-dependencies]
 napi-build = "2"
