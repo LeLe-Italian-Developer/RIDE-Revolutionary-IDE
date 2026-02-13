@@ -321,7 +321,7 @@ suite('platform - terminalEnvironment', async () => {
 
 		test('should redact Google API keys by value pattern', () => {
 			deepStrictEqual(sanitizeEnvForLogging({
-				GOOGLE_KEY: 'AIzaSyDaGmWKa4JsXZ-HjGw7ISLn_3namBGewQe'
+				GOOGLE_KEY: 'AIzaNotARealKeyButLooksLikeOneForTest12'
 			}), {
 				GOOGLE_KEY: '<REDACTED>'
 			});
