@@ -1,0 +1,675 @@
+    Checking ride-security v0.3.0 (/Users/gabrielegiannino/RIDE/native/ride-security)
+error: unknown character escape: `b`
+    --> src/paths.rs:1463:55
+     |
+1463 | ...p\\foo\bar\..\".to_...
+     |           ^ unknown character escape
+     |
+     = help: for more information, visit <https://doc.rust-lang.org/reference/tokens.html#literals>
+help: if you meant to write a literal backslash (perhaps escaping in a regular expression), consider a raw string literal
+     |
+1463 |         assert_eq!(Win32Path::normalize(r"C:\temp\\foo\bar\..\".to_string()), "C:\temp\foo\");
+     |                                         +
+
+error: unknown character escape: `.`
+    --> src/paths.rs:1463:59
+     |
+1463 | ...oo\bar\..\".to_stri...
+     |           ^ unknown character escape
+     |
+     = help: for more information, visit <https://doc.rust-lang.org/reference/tokens.html#literals>
+help: if you meant to write a literal backslash (perhaps escaping in a regular expression), consider a raw string literal
+     |
+1463 |         assert_eq!(Win32Path::normalize(r"C:\temp\\foo\bar\..\".to_string()), "C:\temp\foo\");
+     |                                         +
+
+error: unknown start of token: \
+    --> src/paths.rs:1463:81
+     |
+1463 | ...g()), "C:\temp\foo\");
+     |             ^
+
+error: unknown start of token: \
+    --> src/paths.rs:1463:86
+     |
+1463 | ... "C:\temp\foo\");
+     |             ^
+
+error: unknown start of token: \
+    --> src/paths.rs:1463:90
+     |
+1463 | ...\temp\foo\");
+     |             ^
+
+error: unknown character escape: `.`
+    --> src/paths.rs:1465:45
+     |
+1465 | ...ze("..\..\foo".to_s...
+     |           ^ unknown character escape
+     |
+     = help: for more information, visit <https://doc.rust-lang.org/reference/tokens.html#literals>
+help: if you meant to write a literal backslash (perhaps escaping in a regular expression), consider a raw string literal
+     |
+1465 |         assert_eq!(Win32Path::normalize(r"..\..\foo".to_string()), "..\..\foo");
+     |                                         +
+
+error: unknown character escape: `f`
+    --> src/paths.rs:1465:48
+     |
+1465 | ..."..\..\foo".to_stri...
+     |           ^ unknown character escape
+     |
+     = help: for more information, visit <https://doc.rust-lang.org/reference/tokens.html#literals>
+help: if you meant to write a literal backslash (perhaps escaping in a regular expression), consider a raw string literal
+     |
+1465 |         assert_eq!(Win32Path::normalize(r"..\..\foo".to_string()), "..\..\foo");
+     |                                         +
+
+error: unknown character escape: `.`
+    --> src/paths.rs:1465:71
+     |
+1465 | ...), "..\..\foo");
+     |           ^ unknown character escape
+     |
+     = help: for more information, visit <https://doc.rust-lang.org/reference/tokens.html#literals>
+help: if you meant to write a literal backslash (perhaps escaping in a regular expression), consider a raw string literal
+     |
+1465 |         assert_eq!(Win32Path::normalize("..\..\foo".to_string()), r"..\..\foo");
+     |                                                                   +
+
+error: unknown character escape: `f`
+    --> src/paths.rs:1465:74
+     |
+1465 | ..."..\..\foo");
+     |           ^ unknown character escape
+     |
+     = help: for more information, visit <https://doc.rust-lang.org/reference/tokens.html#literals>
+help: if you meant to write a literal backslash (perhaps escaping in a regular expression), consider a raw string literal
+     |
+1465 |         assert_eq!(Win32Path::normalize("..\..\foo".to_string()), r"..\..\foo");
+     |                                                                   +
+
+error: unknown character escape: `.`
+    --> src/paths.rs:1466:46
+     |
+1466 | ...e("foo\..\bar".to_s...
+     |           ^ unknown character escape
+     |
+     = help: for more information, visit <https://doc.rust-lang.org/reference/tokens.html#literals>
+help: if you meant to write a literal backslash (perhaps escaping in a regular expression), consider a raw string literal
+     |
+1466 |         assert_eq!(Win32Path::normalize(r"foo\..\bar".to_string()), "bar");
+     |                                         +
+
+error: unknown character escape: `b`
+    --> src/paths.rs:1466:49
+     |
+1466 | ...foo\..\bar".to_stri...
+     |           ^ unknown character escape
+     |
+     = help: for more information, visit <https://doc.rust-lang.org/reference/tokens.html#literals>
+help: if you meant to write a literal backslash (perhaps escaping in a regular expression), consider a raw string literal
+     |
+1466 |         assert_eq!(Win32Path::normalize(r"foo\..\bar".to_string()), "bar");
+     |                                         +
+
+error: unknown character escape: `.`
+    --> src/paths.rs:1467:46
+     |
+1467 | ...e("foo\..\..\bar".t...
+     |           ^ unknown character escape
+     |
+     = help: for more information, visit <https://doc.rust-lang.org/reference/tokens.html#literals>
+help: if you meant to write a literal backslash (perhaps escaping in a regular expression), consider a raw string literal
+     |
+1467 |         assert_eq!(Win32Path::normalize(r"foo\..\..\bar".to_string()), "..\bar");
+     |                                         +
+
+error: unknown character escape: `.`
+    --> src/paths.rs:1467:49
+     |
+1467 | ...foo\..\..\bar".to_s...
+     |           ^ unknown character escape
+     |
+     = help: for more information, visit <https://doc.rust-lang.org/reference/tokens.html#literals>
+help: if you meant to write a literal backslash (perhaps escaping in a regular expression), consider a raw string literal
+     |
+1467 |         assert_eq!(Win32Path::normalize(r"foo\..\..\bar".to_string()), "..\bar");
+     |                                         +
+
+error: unknown character escape: `b`
+    --> src/paths.rs:1467:52
+     |
+1467 | ...\..\..\bar".to_stri...
+     |           ^ unknown character escape
+     |
+     = help: for more information, visit <https://doc.rust-lang.org/reference/tokens.html#literals>
+help: if you meant to write a literal backslash (perhaps escaping in a regular expression), consider a raw string literal
+     |
+1467 |         assert_eq!(Win32Path::normalize(r"foo\..\..\bar".to_string()), "..\bar");
+     |                                         +
+
+error: unknown character escape: `b`
+    --> src/paths.rs:1467:75
+     |
+1467 | ...), "..\bar");
+     |           ^ unknown character escape
+     |
+     = help: for more information, visit <https://doc.rust-lang.org/reference/tokens.html#literals>
+help: if you meant to write a literal backslash (perhaps escaping in a regular expression), consider a raw string literal
+     |
+1467 |         assert_eq!(Win32Path::normalize("foo\..\..\bar".to_string()), r"..\bar");
+     |                                                                       +
+
+error: unknown character escape: `f`
+    --> src/paths.rs:1476:50
+     |
+1476 | ...server\file".to_str...
+     |           ^ unknown character escape
+     |
+     = help: for more information, visit <https://doc.rust-lang.org/reference/tokens.html#literals>
+help: if you meant to write a literal backslash (perhaps escaping in a regular expression), consider a raw string literal
+     |
+1476 |         assert!(Win32Path::is_absolute(r"\\server\file".to_string()));
+     |                                        +
+
+error: unknown character escape: `f`
+    --> src/paths.rs:1478:44
+     |
+1478 | ...te("C:\foo\..".to_s...
+     |           ^ unknown character escape
+     |
+     = help: for more information, visit <https://doc.rust-lang.org/reference/tokens.html#literals>
+help: if you meant to write a literal backslash (perhaps escaping in a regular expression), consider a raw string literal
+     |
+1478 |         assert!(Win32Path::is_absolute(r"C:\foo\..".to_string()));
+     |                                        +
+
+error: unknown character escape: `.`
+    --> src/paths.rs:1478:48
+     |
+1478 | ...C:\foo\..".to_strin...
+     |           ^ unknown character escape
+     |
+     = help: for more information, visit <https://doc.rust-lang.org/reference/tokens.html#literals>
+help: if you meant to write a literal backslash (perhaps escaping in a regular expression), consider a raw string literal
+     |
+1478 |         assert!(Win32Path::is_absolute(r"C:\foo\..".to_string()));
+     |                                        +
+
+error: unknown character escape: `b`
+    --> src/paths.rs:1479:45
+     |
+1479 | ...e("bar\baz".to_stri...
+     |           ^ unknown character escape
+     |
+     = help: for more information, visit <https://doc.rust-lang.org/reference/tokens.html#literals>
+help: if you meant to write a literal backslash (perhaps escaping in a regular expression), consider a raw string literal
+     |
+1479 |         assert!(Win32Path::is_absolute(r"bar\baz".to_string()) == false);
+     |                                        +
+
+error: unknown start of token: \
+    --> src/paths.rs:1485:117
+     |
+1485 | ...g()]), "\\server\sh...
+     |            ^^
+     |
+     = note: character appears once more
+
+error: unknown start of token: \
+    --> src/paths.rs:1485:125
+     |
+1485 | ..."\\server\share\rel...
+     |             ^
+
+error: unknown start of token: \
+    --> src/paths.rs:1485:131
+     |
+1485 | ...ver\share\relative\");
+     |             ^
+
+error: unknown start of token: \
+    --> src/paths.rs:1485:140
+     |
+1485 | ...\relative\");
+     |             ^
+
+error: unknown start of token: \
+    --> src/paths.rs:1486:44
+     |
+1486 | ...(vec!["c:\".to_stri...
+     |             ^
+
+error: unknown start of token: \
+    --> src/paths.rs:1486:85
+     |
+1486 | ...()]), "c:\node");
+     |             ^
+
+error: prefix `node` is unknown
+    --> src/paths.rs:1486:86
+     |
+1486 | ... "c:\node");
+     |         ^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1486 |         assert_eq!(Win32Path::join(vec!["c:\".to_string(), "node".to_string()]), "c:\node ");
+     |                                                                                          +
+
+error: unknown start of token: \
+    --> src/paths.rs:1487:44
+     |
+1487 | ...(vec!["c:\".to_stri...
+     |             ^
+
+error: unknown start of token: \
+    --> src/paths.rs:1487:81
+     |
+1487 | ...ring(), "\/".to_str...
+     |             ^
+
+error: unknown start of token: \
+    --> src/paths.rs:1487:103
+     |
+1487 | ...()]), "c:\node\");
+     |             ^
+
+error: unknown start of token: \
+    --> src/paths.rs:1487:108
+     |
+1487 | ... "c:\node\");
+     |             ^
+
+error: unknown start of token: \
+    --> src/paths.rs:1488:44
+     |
+1488 | ...(vec!["c:\".to_stri...
+     |             ^
+
+error: unknown start of token: \
+    --> src/paths.rs:1488:101
+     |
+1488 | ...()]), "c:\node");
+     |             ^
+
+error: prefix `node` is unknown
+    --> src/paths.rs:1488:102
+     |
+1488 | ... "c:\node");
+     |         ^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1488 |         assert_eq!(Win32Path::join(vec!["c:\".to_string(), "".to_string(), "node".to_string()]), "c:\node ");
+     |                                                                                                          +
+
+error: unknown start of token: \
+    --> src/paths.rs:1493:42
+     |
+1493 | ...rname("c:\".to_stri...
+     |             ^
+
+error: unknown start of token: \
+    --> src/paths.rs:1493:62
+     |
+1493 | ...g()), "c:\");
+     |             ^
+
+error: unknown start of token: \
+    --> src/paths.rs:1494:42
+     |
+1494 | ...rname("c:\foo".to_s...
+     |             ^
+
+error: prefix `foo` is unknown
+    --> src/paths.rs:1494:43
+     |
+1494 | ...me("c:\foo".to_stri...
+     |           ^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1494 |         assert_eq!(Win32Path::dirname("c:\foo ".to_string()), "c:\");
+     |                                              +
+
+error: unknown start of token: \
+    --> src/paths.rs:1494:65
+     |
+1494 | ...g()), "c:\");
+     |             ^
+
+error: unknown start of token: \
+    --> src/paths.rs:1495:42
+     |
+1495 | ...rname("c:\foo\".to_...
+     |             ^
+
+error: unknown start of token: \
+    --> src/paths.rs:1495:46
+     |
+1495 | ...e("c:\foo\".to_stri...
+     |             ^
+
+error: unknown start of token: \
+    --> src/paths.rs:1495:66
+     |
+1495 | ...g()), "c:\foo");
+     |             ^
+
+error: prefix `foo` is unknown
+    --> src/paths.rs:1495:67
+     |
+1495 | ...), "c:\foo");
+     |           ^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1495 |         assert_eq!(Win32Path::dirname("c:\foo\".to_string()), "c:\foo ");
+     |                                                                      +
+
+error: unknown start of token: \
+    --> src/paths.rs:1496:42
+     |
+1496 | ...rname("c:\foo\bar"....
+     |             ^
+
+error: unknown start of token: \
+    --> src/paths.rs:1496:46
+     |
+1496 | ...e("c:\foo\bar".to_s...
+     |             ^
+
+error: prefix `bar` is unknown
+    --> src/paths.rs:1496:47
+     |
+1496 | ...c:\foo\bar".to_stri...
+     |           ^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1496 |         assert_eq!(Win32Path::dirname("c:\foo\bar ".to_string()), "c:\foo");
+     |                                                  +
+
+error: unknown start of token: \
+    --> src/paths.rs:1496:69
+     |
+1496 | ...g()), "c:\foo");
+     |             ^
+
+error: prefix `foo` is unknown
+    --> src/paths.rs:1496:70
+     |
+1496 | ...), "c:\foo");
+     |           ^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1496 |         assert_eq!(Win32Path::dirname("c:\foo\bar".to_string()), "c:\foo ");
+     |                                                                         +
+
+error: unknown start of token: \
+    --> src/paths.rs:1497:40
+     |
+1497 | ...irname("\\server\sh...
+     |            ^^
+     |
+     = note: character appears once more
+
+error: unknown start of token: \
+    --> src/paths.rs:1497:48
+     |
+1497 | ..."\\server\share".to...
+     |             ^
+
+error: prefix `share` is unknown
+    --> src/paths.rs:1497:49
+     |
+1497 | ...rver\share".to_stri...
+     |         ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1497 |         assert_eq!(Win32Path::dirname("\\server\share ".to_string()), "\\server\share");
+     |                                                      +
+
+error: unknown start of token: \
+    --> src/paths.rs:1497:71
+     |
+1497 | ...ng()), "\\server\sh...
+     |            ^^
+     |
+     = note: character appears once more
+
+error: unknown start of token: \
+    --> src/paths.rs:1497:79
+     |
+1497 | ..."\\server\share");
+     |             ^
+
+error: prefix `share` is unknown
+    --> src/paths.rs:1497:80
+     |
+1497 | ...rver\share");
+     |         ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1497 |         assert_eq!(Win32Path::dirname("\\server\share".to_string()), "\\server\share ");
+     |                                                                                     +
+
+error: unknown start of token: \
+    --> src/paths.rs:1498:40
+     |
+1498 | ...irname("\\server\sh...
+     |            ^^
+     |
+     = note: character appears once more
+
+error: unknown start of token: \
+    --> src/paths.rs:1498:48
+     |
+1498 | ..."\\server\share\".t...
+     |             ^
+
+error: unknown start of token: \
+    --> src/paths.rs:1498:54
+     |
+1498 | ...ver\share\".to_stri...
+     |             ^
+
+error: unknown start of token: \
+    --> src/paths.rs:1498:72
+     |
+1498 | ...ng()), "\\server\sh...
+     |            ^^
+     |
+     = note: character appears once more
+
+error: unknown start of token: \
+    --> src/paths.rs:1498:80
+     |
+1498 | ..."\\server\share\");
+     |             ^
+
+error: unknown start of token: \
+    --> src/paths.rs:1498:86
+     |
+1498 | ...ver\share\");
+     |             ^
+
+error: unknown start of token: \
+    --> src/paths.rs:1499:40
+     |
+1499 | ...irname("\\server\sh...
+     |            ^^
+     |
+     = note: character appears once more
+
+error: unknown start of token: \
+    --> src/paths.rs:1499:48
+     |
+1499 | ..."\\server\share\foo...
+     |             ^
+
+error: unknown start of token: \
+    --> src/paths.rs:1499:54
+     |
+1499 | ...ver\share\foo".to_s...
+     |             ^
+
+error: prefix `foo` is unknown
+    --> src/paths.rs:1499:55
+     |
+1499 | ...\share\foo".to_stri...
+     |           ^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1499 |         assert_eq!(Win32Path::dirname("\\server\share\foo ".to_string()), "\\server\share");
+     |                                                          +
+
+error: unknown start of token: \
+    --> src/paths.rs:1499:75
+     |
+1499 | ...ng()), "\\server\sh...
+     |            ^^
+     |
+     = note: character appears once more
+
+error: unknown start of token: \
+    --> src/paths.rs:1499:83
+     |
+1499 | ..."\\server\share");
+     |             ^
+
+error: prefix `share` is unknown
+    --> src/paths.rs:1499:84
+     |
+1499 | ...rver\share");
+     |         ^^^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1499 |         assert_eq!(Win32Path::dirname("\\server\share\foo".to_string()), "\\server\share ");
+     |                                                                                         +
+
+error: prefix `ext` is unknown
+    --> src/paths.rs:1505:55
+     |
+1505 | ...sename.ext".to_stri...
+     |           ^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1505 |         assert_eq!(Win32Path::basename("/dir/basename.ext ".to_string(), None), "basename.ext");
+     |                                                          +
+
+error: prefix `ext` is unknown
+    --> src/paths.rs:1505:90
+     |
+1505 | ...sename.ext");
+     |           ^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1505 |         assert_eq!(Win32Path::basename("/dir/basename.ext".to_string(), None), "basename.ext ");
+     |                                                                                             +
+
+error: prefix `ext` is unknown
+    --> src/paths.rs:1506:51
+     |
+1506 | ...sename.ext".to_stri...
+     |           ^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1506 |         assert_eq!(Win32Path::basename("/basename.ext ".to_string(), None), "basename.ext");
+     |                                                      +
+
+error: prefix `ext` is unknown
+    --> src/paths.rs:1506:86
+     |
+1506 | ...sename.ext");
+     |           ^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1506 |         assert_eq!(Win32Path::basename("/basename.ext".to_string(), None), "basename.ext ");
+     |                                                                                         +
+
+error: prefix `ext` is unknown
+    --> src/paths.rs:1507:50
+     |
+1507 | ...sename.ext".to_stri...
+     |           ^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1507 |         assert_eq!(Win32Path::basename("basename.ext ".to_string(), None), "basename.ext");
+     |                                                     +
+
+error: prefix `ext` is unknown
+    --> src/paths.rs:1507:85
+     |
+1507 | ...sename.ext");
+     |           ^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1507 |         assert_eq!(Win32Path::basename("basename.ext".to_string(), None), "basename.ext ");
+     |                                                                                        +
+
+error: prefix `ext` is unknown
+    --> src/paths.rs:1508:86
+     |
+1508 | ...sename.ext");
+     |           ^^^ unknown prefix
+     |
+     = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+     |
+1508 |         assert_eq!(Win32Path::basename("basename.ext/".to_string(), None), "basename.ext ");
+     |                                                                                         +
+
+error: mismatched closing delimiter: `}`
+    --> src/paths.rs:1463:40
+     |
+1461 |     fn test_win32_normalize() {
+     |                               - closing delimiter possibly meant for this
+1462 |         assert_eq!(Win32Path::normalize(""....
+1463 |         assert_eq!(Win32Path::normalize("C:...
+     |                                        ^ unclosed delimiter
+...
+1468 |     }
+     |     ^ mismatched closing delimiter
+
+error: mismatched closing delimiter: `}`
+    --> src/paths.rs:1485:40
+     |
+1484 |     fn test_win32_join() {
+     |                          - closing delimiter possibly meant for this
+1485 |         assert_eq!(Win32Path::join(vec!["//...
+     |                                        ^ unclosed delimiter
+...
+1513 |     }
+     |     ^ mismatched closing delimiter
+
+error: could not compile `ride-security` (lib) due to 75 previous errors

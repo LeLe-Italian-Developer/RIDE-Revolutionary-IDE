@@ -1,0 +1,16 @@
+    Checking ride-security v0.3.0 (/Users/gabrielegiannino/RIDE/native/ride-security)
+error: this file contains an unclosed delimiter
+    --> src/paths.rs:1755:3
+     |
+1706 | mod extpath_tests {
+     |                   - unclosed delimiter
+...
+1748 |     fn test_is_valid_basename() {
+     |                                 - this delimiter might not be properly closed...
+...
+1755 | }
+     | -^
+     | |
+     | ...as it matches this but it has different indentation
+
+error: could not compile `ride-security` (lib) due to 1 previous error

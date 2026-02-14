@@ -229,7 +229,7 @@ mod tests {
 
     #[test]
     fn test_list_processes() {
-        let procs = list_all_processes().unwrap();
+        let procs = ps_list_processes().unwrap();
         assert!(!procs.is_empty());
     }
 

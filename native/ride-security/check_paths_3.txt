@@ -1,0 +1,9 @@
+    Checking ride-security v0.3.0 (/Users/gabrielegiannino/RIDE/native/ride-security)
+error[E0762]: unterminated character literal
+    --> src/paths.rs:1274:26
+     |
+1274 | ..._with('\') {
+     |          ^^^^^^
+
+For more information about this error, try `rustc --explain E0762`.
+error: could not compile `ride-security` (lib) due to 1 previous error

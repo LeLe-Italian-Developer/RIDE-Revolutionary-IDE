@@ -13,11 +13,19 @@ napi-derive = "2"
 # Crypto & Security
 aes-gcm = "0.10"
 sha2 = "0.10"
+sha3 = "0.10"
 rand = "0.8"
 hex = "0.4"
+argon2 = "0.5"
+pbkdf2 = "0.12"
+hmac = "0.12"
+ed25519-dalek = { version = "2", features = ["rand_core"] }
+zeroize = { version = "1", features = ["derive"] }
+subtle = "2"
 
 # Network & URL
 url = "2"
+ipnetwork = "0.20"
 
 # File System
 notify = "7"
@@ -27,10 +35,14 @@ ignore = "0.4"
 regex = "1"
 rayon = "1.10"
 similar = "2"
+encoding_rs = "0.8"
+encoding_rs_io = "0.1"
 
 # Compression
 zstd = "0.13"
 zip = "2"
+tar = "0.4"
+flate2 = "1"
 
 # Data & Config
 serde = { version = "1", features = ["derive"] }
@@ -51,6 +63,8 @@ crc32fast = "1"
 rmp-serde = "1"
 toml = "0.8"
 libc = "0.2"
+portable-pty = "0.9.0"
+percent-encoding = "2.3.2"
 
 [build-dependencies]
 napi-build = "2"

@@ -1,0 +1,718 @@
+    Checking ride-security v0.3.0 (/Users/gabrielegiannino/RIDE/native/ride-security)
+warning: unused import: `std::collections::HashMap`
+  --> src/glob_engine.rs:14:5
+   |
+14 | use std::collections::HashMap;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `napi::bindgen_prelude::*`
+  --> src/hash_utils.rs:10:5
+   |
+10 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude::*`
+ --> src/date.rs:9:5
+  |
+9 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::str`
+   --> src/pfs.rs:417:9
+    |
+417 |     use std::str;
+    |         ^^^^^^^^
+
+warning: unused import: `std::cmp::Ordering`
+ --> src/position.rs:7:5
+  |
+7 | use std::cmp::Ordering;
+  |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::range::Range`
+ --> src/selection.rs:8:5
+  |
+8 | use crate::range::Range;
+  |     ^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::position::Position`
+ --> src/text_model_types.rs:7:5
+  |
+7 | use crate::position::Position;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::range::Range`
+ --> src/text_model_types.rs:8:5
+  |
+8 | use crate::range::Range;
+  |     ^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::fmt`
+ --> src/piece_tree.rs:7:5
+  |
+7 | use std::fmt;
+  |     ^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude::Buffer`
+ --> src/text_model.rs:9:5
+  |
+9 | use napi::bindgen_prelude::Buffer; // Unified Buffer type from napi
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::position::Position`
+  --> src/text_model.rs:10:5
+   |
+10 | use crate::position::Position;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::range::Range`
+  --> src/text_model.rs:11:5
+   |
+11 | use crate::range::Range;
+   |     ^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::range::Range`
+ --> src/cursor.rs:8:5
+  |
+8 | use crate::range::Range;
+  |     ^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::text_model::TextModel`
+  --> src/cursor.rs:10:5
+   |
+10 | use crate::text_model::TextModel;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::position::Position`
+ --> src/tokenizer.rs:7:5
+  |
+7 | use crate::position::Position;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::range::Range`
+ --> src/tokenizer.rs:8:5
+  |
+8 | use crate::range::Range;
+  |     ^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::selection::Selection`
+ --> src/tokenizer.rs:9:5
+  |
+9 | use crate::selection::Selection;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::text_model::TextModel`
+  --> src/tokenizer.rs:10:5
+   |
+10 | use crate::text_model::TextModel;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::cursor::Cursor`
+  --> src/tokenizer.rs:11:5
+   |
+11 | use crate::cursor::Cursor;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::position::Position`
+ --> src/text_edit.rs:7:5
+  |
+7 | use crate::position::Position;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::range::Range`
+ --> src/text_edit.rs:8:5
+  |
+8 | use crate::range::Range;
+  |     ^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::selection::Selection`
+ --> src/text_edit.rs:9:5
+  |
+9 | use crate::selection::Selection;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::text_model::TextModel`
+  --> src/text_edit.rs:10:5
+   |
+10 | use crate::text_model::TextModel;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::cursor::Cursor`
+  --> src/text_edit.rs:11:5
+   |
+11 | use crate::cursor::Cursor;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::position::Position`
+ --> src/editor_config.rs:7:5
+  |
+7 | use crate::position::Position;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::range::Range`
+ --> src/editor_config.rs:8:5
+  |
+8 | use crate::range::Range;
+  |     ^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::selection::Selection`
+ --> src/editor_config.rs:9:5
+  |
+9 | use crate::selection::Selection;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::text_model::TextModel`
+  --> src/editor_config.rs:10:5
+   |
+10 | use crate::text_model::TextModel;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::cursor::Cursor`
+  --> src/editor_config.rs:11:5
+   |
+11 | use crate::cursor::Cursor;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::range::Range`
+ --> src/editor_core.rs:8:5
+  |
+8 | use crate::range::Range;
+  |     ^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::selection::Selection`
+ --> src/editor_core.rs:9:5
+  |
+9 | use crate::selection::Selection;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `text_edit::*`
+   --> src/lib.rs:124:9
+    |
+124 | pub use text_edit::*;
+    |         ^^^^^^^^^^^^
+
+warning: unused import: `Path`
+ --> src/env_service.rs:9:17
+  |
+9 | use std::path::{Path, PathBuf};
+  |                 ^^^^
+
+warning: unused import: `self`
+ --> src/text_file.rs:4:15
+  |
+4 | use std::io::{self, Write};
+  |               ^^^^
+
+error[E0277]: the trait bound `range::Range: serde::Serialize` is not satisfied
+    --> src/ext_api_types.rs:7:24
+     |
+   7 | #[derive(Clone, Debug, Serialize, Deserialize)]
+     |                        ^^^^^^^^^ unsatisfied trait bound
+...
+  10 |     pub range: Range,
+     |     --- required by a bound introduced by this call
+     |
+help: the trait `Serialize` is not implemented for `range::Range`
+    --> src/range.rs:11:1
+     |
+  11 | pub struct Range {
+     | ^^^^^^^^^^^^^^^^
+     = note: for local types consider adding `#[derive(serde::Serialize)]` to your `range::Range` type
+     = note: for types from other crates check whether the crate offers a `serde` feature flag
+     = help: the following other types implement trait `Serialize`:
+               &'a T
+               &'a mut T
+               ()
+               (T,)
+               (T0, T1)
+               (T0, T1, T2)
+               (T0, T1, T2, T3)
+               (T0, T1, T2, T3, T4)
+             and 166 others
+note: required by a bound in `logger::_::_serde::ser::SerializeStruct::serialize_field`
+    --> /Users/gabrielegiannino/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_core-1.0.228/src/ser/mod.rs:1917:21
+     |
+1915 |     fn serialize_field<T>(&mut self, key: &'static str, value: &T) -> Result<(), Self::Error>
+     |        --------------- required by a bound in this associated function
+1916 |     where
+1917 |         T: ?Sized + Serialize;
+     |                     ^^^^^^^^^ required by this bound in `SerializeStruct::serialize_field`
+     = note: this error originates in the derive macro `Serialize` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `range::Range: serde::Deserialize<'de>` is not satisfied
+    --> src/ext_api_types.rs:10:16
+     |
+  10 |     pub range: Range,
+     |                ^^^^^ unsatisfied trait bound
+     |
+help: the trait `Deserialize<'_>` is not implemented for `range::Range`
+    --> src/range.rs:11:1
+     |
+  11 | pub struct Range {
+     | ^^^^^^^^^^^^^^^^
+     = note: for local types consider adding `#[derive(serde::Deserialize)]` to your `range::Range` type
+     = note: for types from other crates check whether the crate offers a `serde` feature flag
+     = help: the following other types implement trait `Deserialize<'de>`:
+               &'a Path
+               &'a [u8]
+               &'a str
+               ()
+               (T,)
+               (T0, T1)
+               (T0, T1, T2)
+               (T0, T1, T2, T3)
+             and 157 others
+note: required by a bound in `next_element`
+    --> /Users/gabrielegiannino/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_core-1.0.228/src/de/mod.rs:1771:12
+     |
+1769 |     fn next_element<T>(&mut self) -> Result<Option<T>, Self::Error>
+     |        ------------ required by a bound in this associated function
+1770 |     where
+1771 |         T: Deserialize<'de>,
+     |            ^^^^^^^^^^^^^^^^ required by this bound in `SeqAccess::next_element`
+
+error[E0277]: the trait bound `range::Range: serde::Deserialize<'de>` is not satisfied
+    --> src/ext_api_types.rs:10:16
+     |
+  10 |     pub range: Range,
+     |                ^^^^^ unsatisfied trait bound
+     |
+help: the trait `Deserialize<'_>` is not implemented for `range::Range`
+    --> src/range.rs:11:1
+     |
+  11 | pub struct Range {
+     | ^^^^^^^^^^^^^^^^
+     = note: for local types consider adding `#[derive(serde::Deserialize)]` to your `range::Range` type
+     = note: for types from other crates check whether the crate offers a `serde` feature flag
+     = help: the following other types implement trait `Deserialize<'de>`:
+               &'a Path
+               &'a [u8]
+               &'a str
+               ()
+               (T,)
+               (T0, T1)
+               (T0, T1, T2)
+               (T0, T1, T2, T3)
+             and 157 others
+note: required by a bound in `next_value`
+    --> /Users/gabrielegiannino/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_core-1.0.228/src/de/mod.rs:1916:12
+     |
+1914 |     fn next_value<V>(&mut self) -> Result<V, Self::Error>
+     |        ---------- required by a bound in this associated function
+1915 |     where
+1916 |         V: Deserialize<'de>,
+     |            ^^^^^^^^^^^^^^^^ required by this bound in `MapAccess::next_value`
+
+error[E0277]: the trait bound `range::Range: serde::Deserialize<'de>` is not satisfied
+  --> src/ext_api_types.rs:7:35
+   |
+ 7 | #[derive(Clone, Debug, Serialize, Deserialize)]
+   |                                   ^^^^^^^^^^^ unsatisfied trait bound
+   |
+help: the trait `Deserialize<'_>` is not implemented for `range::Range`
+  --> src/range.rs:11:1
+   |
+11 | pub struct Range {
+   | ^^^^^^^^^^^^^^^^
+   = note: for local types consider adding `#[derive(serde::Deserialize)]` to your `range::Range` type
+   = note: for types from other crates check whether the crate offers a `serde` feature flag
+   = help: the following other types implement trait `Deserialize<'de>`:
+             &'a Path
+             &'a [u8]
+             &'a str
+             ()
+             (T,)
+             (T0, T1)
+             (T0, T1, T2)
+             (T0, T1, T2, T3)
+           and 157 others
+note: required by a bound in `logger::_::_serde::__private228::de::missing_field`
+  --> /Users/gabrielegiannino/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs:26:8
+   |
+24 | pub fn missing_field<'de, V, E>(field: &'static str) -> Result<V, E>
+   |        ------------- required by a bound in this function
+25 | where
+26 |     V: Deserialize<'de>,
+   |        ^^^^^^^^^^^^^^^^ required by this bound in `missing_field`
+   = note: this error originates in the derive macro `Deserialize` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `range::Range: napi::bindgen_prelude::FromNapiValue` is not satisfied
+  --> src/ext_api_types.rs:6:1
+   |
+ 6 | #[napi(object)]
+   | ^^^^^^^^^^^^^^^ unsatisfied trait bound
+   |
+help: the trait `NapiValue` is not implemented for `range::Range`
+  --> src/range.rs:11:1
+   |
+11 | pub struct Range {
+   | ^^^^^^^^^^^^^^^^
+   = help: the following other types implement trait `NapiValue`:
+             JsArrayBuffer
+             JsBigInt
+             JsBoolean
+             JsBuffer
+             JsDataView
+             JsDate
+             JsExternal
+             JsFunction
+           and 10 others
+   = note: required for `range::Range` to implement `napi::bindgen_prelude::FromNapiValue`
+note: required by a bound in `napi::bindgen_runtime::js_values::object::<impl JsObject>::get`
+  --> /Users/gabrielegiannino/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/napi-2.16.17/src/bindgen_runtime/js_values/object.rs:24:32
+   |
+24 |   pub fn get<K: AsRef<str>, V: FromNapiValue>(&self, field: K) -> Result<Option<V>> {
+   |                                ^^^^^^^^^^^^^ required by this bound in `napi::bindgen_runtime::js_values::object::<impl JsObject>::get`
+   = note: this error originates in the attribute macro `napi` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `range::Range: serde::Serialize` is not satisfied
+    --> src/ext_api_types.rs:23:24
+     |
+  23 | #[derive(Clone, Debug, Serialize, Deserialize)]
+     |                        ^^^^^^^^^ unsatisfied trait bound
+  24 | pub struct Diagnostic {
+  25 |     pub range: Range,
+     |     --- required by a bound introduced by this call
+     |
+help: the trait `Serialize` is not implemented for `range::Range`
+    --> src/range.rs:11:1
+     |
+  11 | pub struct Range {
+     | ^^^^^^^^^^^^^^^^
+     = note: for local types consider adding `#[derive(serde::Serialize)]` to your `range::Range` type
+     = note: for types from other crates check whether the crate offers a `serde` feature flag
+     = help: the following other types implement trait `Serialize`:
+               &'a T
+               &'a mut T
+               ()
+               (T,)
+               (T0, T1)
+               (T0, T1, T2)
+               (T0, T1, T2, T3)
+               (T0, T1, T2, T3, T4)
+             and 166 others
+note: required by a bound in `logger::_::_serde::ser::SerializeStruct::serialize_field`
+    --> /Users/gabrielegiannino/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_core-1.0.228/src/ser/mod.rs:1917:21
+     |
+1915 |     fn serialize_field<T>(&mut self, key: &'static str, value: &T) -> Result<(), Self::Error>
+     |        --------------- required by a bound in this associated function
+1916 |     where
+1917 |         T: ?Sized + Serialize;
+     |                     ^^^^^^^^^ required by this bound in `SerializeStruct::serialize_field`
+     = note: this error originates in the derive macro `Serialize` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `range::Range: serde::Deserialize<'de>` is not satisfied
+    --> src/ext_api_types.rs:25:16
+     |
+  25 |     pub range: Range,
+     |                ^^^^^ unsatisfied trait bound
+     |
+help: the trait `Deserialize<'_>` is not implemented for `range::Range`
+    --> src/range.rs:11:1
+     |
+  11 | pub struct Range {
+     | ^^^^^^^^^^^^^^^^
+     = note: for local types consider adding `#[derive(serde::Deserialize)]` to your `range::Range` type
+     = note: for types from other crates check whether the crate offers a `serde` feature flag
+     = help: the following other types implement trait `Deserialize<'de>`:
+               &'a Path
+               &'a [u8]
+               &'a str
+               ()
+               (T,)
+               (T0, T1)
+               (T0, T1, T2)
+               (T0, T1, T2, T3)
+             and 157 others
+note: required by a bound in `next_element`
+    --> /Users/gabrielegiannino/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_core-1.0.228/src/de/mod.rs:1771:12
+     |
+1769 |     fn next_element<T>(&mut self) -> Result<Option<T>, Self::Error>
+     |        ------------ required by a bound in this associated function
+1770 |     where
+1771 |         T: Deserialize<'de>,
+     |            ^^^^^^^^^^^^^^^^ required by this bound in `SeqAccess::next_element`
+
+error[E0277]: the trait bound `range::Range: serde::Deserialize<'de>` is not satisfied
+    --> src/ext_api_types.rs:25:16
+     |
+  25 |     pub range: Range,
+     |                ^^^^^ unsatisfied trait bound
+     |
+help: the trait `Deserialize<'_>` is not implemented for `range::Range`
+    --> src/range.rs:11:1
+     |
+  11 | pub struct Range {
+     | ^^^^^^^^^^^^^^^^
+     = note: for local types consider adding `#[derive(serde::Deserialize)]` to your `range::Range` type
+     = note: for types from other crates check whether the crate offers a `serde` feature flag
+     = help: the following other types implement trait `Deserialize<'de>`:
+               &'a Path
+               &'a [u8]
+               &'a str
+               ()
+               (T,)
+               (T0, T1)
+               (T0, T1, T2)
+               (T0, T1, T2, T3)
+             and 157 others
+note: required by a bound in `next_value`
+    --> /Users/gabrielegiannino/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_core-1.0.228/src/de/mod.rs:1916:12
+     |
+1914 |     fn next_value<V>(&mut self) -> Result<V, Self::Error>
+     |        ---------- required by a bound in this associated function
+1915 |     where
+1916 |         V: Deserialize<'de>,
+     |            ^^^^^^^^^^^^^^^^ required by this bound in `MapAccess::next_value`
+
+error[E0277]: the trait bound `range::Range: serde::Deserialize<'de>` is not satisfied
+  --> src/ext_api_types.rs:23:35
+   |
+23 | #[derive(Clone, Debug, Serialize, Deserialize)]
+   |                                   ^^^^^^^^^^^ unsatisfied trait bound
+   |
+help: the trait `Deserialize<'_>` is not implemented for `range::Range`
+  --> src/range.rs:11:1
+   |
+11 | pub struct Range {
+   | ^^^^^^^^^^^^^^^^
+   = note: for local types consider adding `#[derive(serde::Deserialize)]` to your `range::Range` type
+   = note: for types from other crates check whether the crate offers a `serde` feature flag
+   = help: the following other types implement trait `Deserialize<'de>`:
+             &'a Path
+             &'a [u8]
+             &'a str
+             ()
+             (T,)
+             (T0, T1)
+             (T0, T1, T2)
+             (T0, T1, T2, T3)
+           and 157 others
+note: required by a bound in `logger::_::_serde::__private228::de::missing_field`
+  --> /Users/gabrielegiannino/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs:26:8
+   |
+24 | pub fn missing_field<'de, V, E>(field: &'static str) -> Result<V, E>
+   |        ------------- required by a bound in this function
+25 | where
+26 |     V: Deserialize<'de>,
+   |        ^^^^^^^^^^^^^^^^ required by this bound in `missing_field`
+   = note: this error originates in the derive macro `Deserialize` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `range::Range: napi::bindgen_prelude::FromNapiValue` is not satisfied
+  --> src/ext_api_types.rs:22:1
+   |
+22 | #[napi(object)]
+   | ^^^^^^^^^^^^^^^ unsatisfied trait bound
+   |
+help: the trait `NapiValue` is not implemented for `range::Range`
+  --> src/range.rs:11:1
+   |
+11 | pub struct Range {
+   | ^^^^^^^^^^^^^^^^
+   = help: the following other types implement trait `NapiValue`:
+             JsArrayBuffer
+             JsBigInt
+             JsBoolean
+             JsBuffer
+             JsDataView
+             JsDate
+             JsExternal
+             JsFunction
+           and 10 others
+   = note: required for `range::Range` to implement `napi::bindgen_prelude::FromNapiValue`
+note: required by a bound in `napi::bindgen_runtime::js_values::object::<impl JsObject>::get`
+  --> /Users/gabrielegiannino/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/napi-2.16.17/src/bindgen_runtime/js_values/object.rs:24:32
+   |
+24 |   pub fn get<K: AsRef<str>, V: FromNapiValue>(&self, field: K) -> Result<Option<V>> {
+   |                                ^^^^^^^^^^^^^ required by this bound in `napi::bindgen_runtime::js_values::object::<impl JsObject>::get`
+   = note: this error originates in the attribute macro `napi` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/editor_service.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/ext_host_scm.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/ext_host_debug.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/ext_host_terminal.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/env_service.rs:6:5
+  |
+6 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/ext_host_workspace.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/ext_host_languages.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+  --> src/terminals.rs:11:5
+   |
+11 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/ext_host_editors.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+  --> src/paths.rs:13:5
+   |
+13 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+  --> src/collections.rs:13:5
+   |
+13 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+  --> src/ports.rs:10:5
+   |
+10 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/ext_host_documents.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/ext_api_types.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/ext_api_commands.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+  --> src/glob_engine.rs:13:5
+   |
+13 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+  --> src/lifecycle.rs:12:5
+   |
+12 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/auth_service.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/history.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/log_service.rs:6:5
+  |
+6 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/workspace.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+  --> src/color_picker.rs:10:5
+   |
+10 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/user_profile.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+  --> src/async_utils.rs:10:5
+   |
+10 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/preferences.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+  --> src/link_detector.rs:10:5
+   |
+10 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/config_resolver.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+  --> src/word_ops.rs:10:5
+   |
+10 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+  --> src/suggest.rs:10:5
+   |
+10 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: variable does not need to be mutable
+  --> src/user_profile.rs:43:13
+   |
+43 |         let mut profiles = self.profiles.lock().unwrap();
+   |             ----^^^^^^^^
+   |             |
+   |             help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+For more information about this error, try `rustc --explain E0277`.
+warning: `ride-security` (lib) generated 64 warnings
+error: could not compile `ride-security` (lib) due to 10 previous errors; 64 warnings emitted

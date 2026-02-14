@@ -1,0 +1,41 @@
+    Checking percent-encoding v2.3.2
+    Checking form_urlencoded v1.2.2
+    Checking url v2.5.8
+    Checking ride-security v0.3.0 (/Users/gabrielegiannino/RIDE/native/ride-security)
+error: unknown character escape: `/`
+   --> src/paths.rs:811:11
+    |
+811 |         "\/:*?\"<>|"
+    |           ^ unknown character escape
+    |
+    = help: for more information, visit <https://doc.rust-lang.org/reference/tokens.html#literals>
+help: if you meant to write a literal backslash (perhaps escaping in a regular expression), consider a raw string literal
+    |
+811 |         r"\/:*?\"<>|"
+    |         +
+
+error: prefix `remote` is unknown
+   --> src/paths.rs:913:48
+    |
+913 | ...code-remote".to_stri...
+    |         ^^^^^^ unknown prefix
+    |
+    = note: prefixed identifiers and literals are reserved since Rust 2021
+help: consider inserting whitespace here
+    |
+913 |     pub fn vscode_remote() -> String { "vscode-remote ".to_string() }
+    |                                                      +
+
+error: unexpected closing delimiter: `}`
+    --> src/paths.rs:1040:1
+     |
+ 858 |     let sep = if is_win { "...
+     |                         - this delimiter might not be properly closed...
+...
+ 976 |         }
+     |         - ...as it matches this but it has different indentation
+...
+1040 | }
+     | ^ unexpected closing delimiter
+
+error: could not compile `ride-security` (lib) due to 3 previous errors

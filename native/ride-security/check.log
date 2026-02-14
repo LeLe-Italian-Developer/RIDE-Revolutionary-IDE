@@ -1,0 +1,883 @@
+    Checking ride-security v0.3.0 (/Users/gabrielegiannino/RIDE/native/ride-security)
+error[E0583]: file not found for module `codicons`
+  --> src/lib.rs:92:1
+   |
+92 | mod codicons;
+   | ^^^^^^^^^^^^^
+   |
+   = help: to create the module `codicons`, create file "src/codicons.rs" or "src/codicons/mod.rs"
+   = note: if there is a `mod codicons` elsewhere in the crate already, import it with `use crate::...` instead
+
+error[E0583]: file not found for module `html_content`
+  --> src/lib.rs:93:1
+   |
+93 | mod html_content;
+   | ^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `html_content`, create file "src/html_content.rs" or "src/html_content/mod.rs"
+   = note: if there is a `mod html_content` elsewhere in the crate already, import it with `use crate::...` instead
+
+error[E0428]: the name `strings` is defined multiple times
+  --> src/lib.rs:94:1
+   |
+39 | mod strings;
+   | ------------ previous definition of the module `strings` here
+...
+94 | mod strings;
+   | ^^^^^^^^^^^^ `strings` redefined here
+   |
+   = note: `strings` must be defined only once in the type namespace of this module
+
+error[E0428]: the name `paths` is defined multiple times
+  --> src/lib.rs:95:1
+   |
+40 | mod paths;
+   | ---------- previous definition of the module `paths` here
+...
+95 | mod paths;
+   | ^^^^^^^^^^ `paths` redefined here
+   |
+   = note: `paths` must be defined only once in the type namespace of this module
+
+error[E0432]: unresolved import `crate::text_edit::SingleEditOperation`
+  --> src/text_model.rs:21:5
+   |
+21 | use crate::text_edit::SingleEditOperation;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `SingleEditOperation` in `text_edit`
+   |
+help: consider importing this struct through its public re-export instead
+   |
+21 - use crate::text_edit::SingleEditOperation;
+21 + use crate::SingleEditOperation;
+   |
+
+warning: unused imports: `RemoveKind` and `RenameMode`
+  --> src/fs_watcher.rs:20:83
+   |
+20 | ...::{RenameMode, CreateKind, RemoveKind}
+   |       ^^^^^^^^^^              ^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `Path`
+  --> src/logger.rs:21:17
+   |
+21 | use std::path::{Path, Pa...
+   |                 ^^^^
+
+warning: unused import: `PathBuf`
+  --> src/config.rs:20:23
+   |
+20 | ...{Path, PathBuf};
+   |           ^^^^^^^
+
+warning: unused imports: `BufReader`, `Read`, and `Write`
+  --> src/compression.rs:18:21
+   |
+18 | ...f, Read, Write, BufReader};
+   |       ^^^^  ^^^^^  ^^^^^^^^^
+
+warning: unused import: `PathBuf`
+  --> src/compression.rs:19:23
+   |
+19 | ...{Path, PathBuf};
+   |           ^^^^^^^
+
+warning: unused import: `std::collections::HashMap`
+  --> src/glob_engine.rs:14:5
+   |
+14 | use std::collections::HashMap;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude::*`
+  --> src/hash_utils.rs:10:5
+   |
+10 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude::*`
+ --> src/date.rs:9:5
+  |
+9 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::collections::HashMap`
+ --> src/types.rs:9:5
+  |
+9 | use std::collections::HashMap;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::str`
+   --> src/pfs.rs:417:9
+    |
+417 |     use std::str;
+    |         ^^^^^^^^
+
+warning: unused import: `codicons::*`
+   --> src/lib.rs:102:9
+    |
+102 | pub use codicons::*;
+    |         ^^^^^^^^^^^
+
+warning: unused import: `html_content::*`
+   --> src/lib.rs:103:9
+    |
+103 | pub use html_content::*;
+    |         ^^^^^^^^^^^^^^^
+
+warning: unused import: `strings::*`
+   --> src/lib.rs:104:9
+    |
+104 | pub use strings::*;
+    |         ^^^^^^^^^^
+
+warning: unused import: `paths::*`
+   --> src/lib.rs:105:9
+    |
+105 | pub use paths::*;
+    |         ^^^^^^^^
+
+warning: unused import: `std::cmp::Ordering`
+ --> src/position.rs:7:5
+  |
+7 | use std::cmp::Ordering;
+  |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::position::Position`
+ --> src/text_model_types.rs:7:5
+  |
+7 | use crate::position::Position;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::range::Range`
+ --> src/text_model_types.rs:8:5
+  |
+8 | use crate::range::Range;
+  |     ^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::sync::Arc`
+  --> src/piece_tree.rs:18:5
+   |
+18 | use std::sync::Arc;
+   |     ^^^^^^^^^^^^^^
+
+warning: unnecessary parentheses around assigned value
+   --> src/piece_tree.rs:273:15
+    |
+273 | ... = (start + length as usize);
+    |       ^                       ^
+    |
+    = note: `#[warn(unused_parens)]` (part of `#[warn(unused)]`) on by default
+help: remove these parentheses
+    |
+273 -     let end = (start + length as usize);
+273 +     let end = start + length as usize;
+    |
+
+warning: unused import: `std::collections::HashMap`
+ --> src/tokenizer.rs:7:5
+  |
+7 | use std::collections::HashMap;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::position::Position`
+ --> src/text_edit.rs:7:5
+  |
+7 | use crate::position::Position;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::range::Range`
+ --> src/text_edit.rs:8:5
+  |
+8 | use crate::range::Range;
+  |     ^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::selection::Selection`
+ --> src/text_edit.rs:9:5
+  |
+9 | use crate::selection::Selection;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::text_model::TextModel`
+  --> src/text_edit.rs:10:5
+   |
+10 | use crate::text_model::TextModel;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::cursor::Cursor`
+  --> src/text_edit.rs:11:5
+   |
+11 | use crate::cursor::Cursor;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::position::Position`
+ --> src/editor_config.rs:7:5
+  |
+7 | use crate::position::Position;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::range::Range`
+ --> src/editor_config.rs:8:5
+  |
+8 | use crate::range::Range;
+  |     ^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::selection::Selection`
+ --> src/editor_config.rs:9:5
+  |
+9 | use crate::selection::Selection;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::text_model::TextModel`
+  --> src/editor_config.rs:10:5
+   |
+10 | use crate::text_model::TextModel;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::cursor::Cursor`
+  --> src/editor_config.rs:11:5
+   |
+11 | use crate::cursor::Cursor;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::range::Range`
+ --> src/editor_core.rs:8:5
+  |
+8 | use crate::range::Range;
+  |     ^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::selection::Selection`
+ --> src/editor_core.rs:9:5
+  |
+9 | use crate::selection::Selection;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `text_edit::*`
+   --> src/lib.rs:132:9
+    |
+132 | pub use text_edit::*;
+    |         ^^^^^^^^^^^^
+
+warning: unused import: `crate::pfs`
+ --> src/file_service.rs:4:5
+  |
+4 | use crate::pfs;
+  |     ^^^^^^^^^^
+
+warning: unused import: `Path`
+ --> src/env_service.rs:9:17
+  |
+9 | use std::path::{Path, Pat...
+  |                 ^^^^
+
+warning: unused import: `HashSet`
+  --> src/keybinding_resolver.rs:20:33
+   |
+20 | ...shMap, HashSet};
+   |           ^^^^^^^
+
+warning: unused import: `self`
+ --> src/text_file.rs:4:15
+  |
+4 | use std::io::{self, Write};
+  |               ^^^^
+
+warning: unused import: `serde_json::Value`
+  --> src/ext_api_commands.rs:10:5
+   |
+10 | use serde_json::Value;
+   |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::range::Range`
+  --> src/ext_host_documents.rs:10:5
+   |
+10 | use crate::range::Range;
+   |     ^^^^^^^^^^^^^^^^^^^
+
+error[E0277]: the trait bound `u64: FromNapiValue` is not satisfied
+  --> src/fs_watcher.rs:48:1
+   |
+48 | #[napi(object)]
+   | ^^^^^^^^^^^^^^^ unsatisfied trait bound
+   |
+   = help: the trait `NapiValue` is not implemented for `u64`
+   = help: the following other types implement trait `NapiValue`:
+             JsArrayBuffer
+             JsBigInt
+             JsBoolean
+             JsBuffer
+             JsDataView
+             JsDate
+             JsExternal
+             JsFunction
+           and 10 others
+   = note: required for `u64` to implement `FromNapiValue`
+note: required by a bound in `napi::bindgen_runtime::js_values::object::<impl JsObject>::get`
+  --> /Users/gabrielegiannino/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/napi-2.16.17/src/bindgen_runtime/js_values/object.rs:24:32
+   |
+24 | ...V: FromNapiValue>(&se...
+   |       ^^^^^^^^^^^^^ required by this bound in `napi::bindgen_runtime::js_values::object::<impl JsObject>::get`
+   = note: the full name for the type has been written to '/Users/gabrielegiannino/RIDE/native/ride-security/target/debug/deps/ride_security-92fa18d30cf5c084.long-type-10847400804811069648.txt'
+   = note: consider using `--verbose` to print the full type name to the console
+   = note: this error originates in the attribute macro `napi` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `Option<...>: ObjectFinalize` is not satisfied
+    --> src/paths.rs:1924:1
+     |
+1924 | #[napi]
+     | ^^^^^^^ unsatisfied trait bound
+     |
+     = help: the trait `napi::bindgen_prelude::ObjectFinalize` is not implemented for `Option<URI>`
+     = help: the following other types implement trait `napi::bindgen_prelude::ObjectFinalize`:
+               ActionRegistry
+               async_utils::Barrier
+               IdleValue
+               RateLimiter
+               SequenceQueue
+               AuthenticationService
+               ChatEngine
+               collections::LruCache
+             and 81 others
+note: required by a bound in `CallbackInfo::<N>::factory`
+    --> /Users/gabrielegiannino/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/napi-2.16.17/src/bindgen_runtime/callback_info.rs:153:21
+     |
+ 153 | ...T: ObjectFinalize + ...
+     |       ^^^^^^^^^^^^^^ required by this bound in `CallbackInfo::<N>::factory`
+     = note: the full name for the type has been written to '/Users/gabrielegiannino/RIDE/native/ride-security/target/debug/deps/ride_security-92fa18d30cf5c084.long-type-9973341812193095132.txt'
+     = note: consider using `--verbose` to print the full type name to the console
+     = note: this error originates in the attribute macro `napi` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no associated item named `VSCODE_AUTHORITY` found for struct `paths::URI` in the current scope
+    --> src/paths.rs:2005:68
+     |
+ 937 | pub struct URI {
+     | -------------- associated item `VSCODE_AUTHORITY` not found for this struct
+...
+2005 |                 authority: Some(if uri.authority.is_empty() { URI::VSCODE_AUTHORITY.to...
+     |                                                                    ^^^^^^^^^^^^^^^^ associated item not found in `paths::URI`
+
+error[E0599]: no associated item named `VSCODE_AUTHORITY` found for struct `paths::URI` in the current scope
+    --> src/paths.rs:2019:53
+     |
+ 937 | pub struct URI {
+     | -------------- associated item `VSCODE_AUTHORITY` not found for this struct
+...
+2019 |                 authority: if uri.authority != URI::VSCODE_AUTHORITY { ...
+     |                                                     ^^^^^^^^^^^^^^^^ associated item not found in `paths::URI`
+
+error[E0277]: the trait bound `Option<...>: ObjectFinalize` is not satisfied
+    --> src/paths.rs:1924:1
+     |
+1924 | #[napi]
+     | ^^^^^^^ unsatisfied trait bound
+     |
+     = help: the trait `napi::bindgen_prelude::ObjectFinalize` is not implemented for `Option<URI>`
+     = help: the following other types implement trait `napi::bindgen_prelude::ObjectFinalize`:
+               ActionRegistry
+               async_utils::Barrier
+               IdleValue
+               RateLimiter
+               SequenceQueue
+               AuthenticationService
+               ChatEngine
+               collections::LruCache
+             and 81 others
+note: required by a bound in `CallbackInfo::<N>::factory`
+    --> /Users/gabrielegiannino/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/napi-2.16.17/src/bindgen_runtime/callback_info.rs:153:21
+     |
+ 153 | ...T: ObjectFinalize + ...
+     |       ^^^^^^^^^^^^^^ required by this bound in `CallbackInfo::<N>::factory`
+     = note: the full name for the type has been written to '/Users/gabrielegiannino/RIDE/native/ride-security/target/debug/deps/ride_security-92fa18d30cf5c084.long-type-1873205923006546170.txt'
+     = note: consider using `--verbose` to print the full type name to the console
+     = note: this error originates in the attribute macro `napi` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `get_line_content` found for struct `RwLockReadGuard<'_, ...>` in the current scope
+   --> src/text_model.rs:86:37
+    |
+ 86 | ...().get_line_content(li...
+    |       ^^^^^^^^^^^^^^^^
+    |
+help: there is a method `get_line_count` with a similar name, but with different arguments
+   --> src/piece_tree.rs:262:5
+    |
+262 |     pub fn get_line_count(&self) -> u32 {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    = note: the full name for the type has been written to '/Users/gabrielegiannino/RIDE/native/ride-security/target/debug/deps/ride_security-92fa18d30cf5c084.long-type-4741369656311526500.txt'
+    = note: consider using `--verbose` to print the full type name to the console
+
+error[E0599]: no method named `insert` found for struct `RwLockWriteGuard<'_, ...>` in the current scope
+   --> src/text_model.rs:103:20
+    |
+103 | ...   buffer.insert(edi...
+    |              ^^^^^^
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following traits define an item `insert`, perhaps you need to implement one of them:
+            candidate #1: `DiffHook`
+            candidate #2: `bitflags::traits::Flags`
+            candidate #3: `ppv_lite86::types::Vec2`
+            candidate #4: `ppv_lite86::types::Vec4`
+            candidate #5: `toml_edit::table::TableLike`
+    = note: the full name for the type has been written to '/Users/gabrielegiannino/RIDE/native/ride-security/target/debug/deps/ride_security-92fa18d30cf5c084.long-type-890010062162084653.txt'
+    = note: consider using `--verbose` to print the full type name to the console
+help: there is a method `insert_v2` with a similar name
+    |
+103 |             buffer.insert_v2(edit.range.start_line_number as usize, edit.text);
+    |                          +++
+
+error[E0277]: the trait bound `(u32, u32): ToNapiValue` is not satisfied
+   --> src/view_model.rs:153:79
+    |
+153 | ...-> (u32, u32) {
+    |       ^^^^^^^^^^ unsatisfied trait bound
+    |
+    = help: the trait `NapiRaw` is not implemented for `(u32, u32)`
+    = help: the following other types implement trait `NapiRaw`:
+              &'env JsArrayBuffer
+              &'env JsBigInt
+              &'env JsBoolean
+              &'env JsBuffer
+              &'env JsDataView
+              &'env JsDate
+              &'env JsExternal
+              &'env JsFunction
+            and 30 others
+    = note: required for `(u32, u32)` to implement `ToNapiValue`
+    = note: the full name for the type has been written to '/Users/gabrielegiannino/RIDE/native/ride-security/target/debug/deps/ride_security-92fa18d30cf5c084.long-type-3873534612514883510.txt'
+    = note: consider using `--verbose` to print the full type name to the console
+
+error[E0599]: no method named `set_value` found for struct `text_model::TextModel` in the current scope
+  --> src/editor_core.rs:42:20
+   |
+42 | ...model.set_value(value);
+   |          ^^^^^^^^^
+   |
+  ::: src/text_model.rs:49:1
+   |
+49 | pub struct TextModel {
+   | -------------------- method `set_value` not found for this struct
+   |
+help: there is a method `get_value` with a similar name, but with different arguments
+  --> src/text_model.rs:75:5
+   |
+75 |     pub fn get_value(&self) -> String {
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0277]: the trait bound `HashMap<u32, ...>: FromNapiValue` is not satisfied
+   --> src/keybinding_resolver.rs:123:39
+    |
+123 | ...p: HashMap<u32, String>) {
+    |       ^^^^^^^^^^^^^^^^^^^^ unsatisfied trait bound
+    |
+    = help: the trait `napi::bindgen_prelude::FromNapiValue` is not implemented for `HashMap<u32, ...>`
+help: the trait `FromNapiValue` is implemented for `HashMap<K, V, S>`
+   --> /Users/gabrielegiannino/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/napi-2.16.17/src/bindgen_runtime/js_values/map.rs:37:1
+    |
+ 37 | / impl<K, V, S> FromNapiValue fo...
+ 38 | | where
+ 39 | |   K: From<String> + Eq + Hash,
+ 40 | |   V: FromNapiValue,
+ 41 | |   S: Default + BuildHasher,
+    | |___________________________^
+    = note: the full name for the type has been written to '/Users/gabrielegiannino/RIDE/native/ride-security/target/debug/deps/ride_security-92fa18d30cf5c084.long-type-15853933948518263724.txt'
+    = note: consider using `--verbose` to print the full type name to the console
+
+error[E0277]: the trait bound `u64: FromNapiValue` is not satisfied
+  --> src/ext_host.rs:48:1
+   |
+48 | #[napi(object)]
+   | ^^^^^^^^^^^^^^^ unsatisfied trait bound
+   |
+   = help: the trait `NapiValue` is not implemented for `u64`
+   = help: the following other types implement trait `NapiValue`:
+             JsArrayBuffer
+             JsBigInt
+             JsBoolean
+             JsBuffer
+             JsDataView
+             JsDate
+             JsExternal
+             JsFunction
+           and 10 others
+   = note: required for `u64` to implement `FromNapiValue`
+note: required by a bound in `napi::bindgen_runtime::js_values::object::<impl JsObject>::get`
+  --> /Users/gabrielegiannino/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/napi-2.16.17/src/bindgen_runtime/js_values/object.rs:24:32
+   |
+24 | ...V: FromNapiValue>(&se...
+   |       ^^^^^^^^^^^^^ required by this bound in `napi::bindgen_runtime::js_values::object::<impl JsObject>::get`
+   = note: the full name for the type has been written to '/Users/gabrielegiannino/RIDE/native/ride-security/target/debug/deps/ride_security-92fa18d30cf5c084.long-type-10847400804811069648.txt'
+   = note: consider using `--verbose` to print the full type name to the console
+   = note: this error originates in the attribute macro `napi` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/user_data_sync.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/mcp_engine.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/quickinput.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+  --> src/testing_engine.rs:15:5
+   |
+15 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/terminal_engine.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+  --> src/diff.rs:14:5
+   |
+14 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/debug_engine.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/search_service.rs:6:5
+  |
+6 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+  --> src/notebook_engine.rs:15:5
+   |
+15 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/remote.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+  --> src/chat_engine.rs:16:5
+   |
+16 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+  --> src/syntax.rs:14:5
+   |
+14 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/working_copy.rs:6:5
+  |
+6 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/ext_host_scm.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/storage_engine.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/ext_host_debug.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/ext_host_terminal.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/ext_host_workspace.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/ext_host_languages.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+  --> src/keybinding_resolver.rs:17:5
+   |
+17 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/ext_host_editors.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/ext_mgmt.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/ext_host_documents.rs:6:5
+  |
+6 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+  --> src/ext_api_types.rs:15:5
+   |
+15 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/contextkey_eval.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+  --> src/collections.rs:13:5
+   |
+13 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/window_mgmt.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/history.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/env_service.rs:6:5
+  |
+6 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+  --> src/piece_tree.rs:16:5
+   |
+16 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+  --> src/glob_engine.rs:13:5
+   |
+13 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+  --> src/lifecycle.rs:12:5
+   |
+12 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/workspace.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/log_service.rs:6:5
+  |
+6 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/user_profile.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/preferences.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+  --> src/text_model.rs:17:5
+   |
+17 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/config_resolver.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/action_registry.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/types.rs:6:5
+  |
+6 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+  --> src/view_model.rs:16:5
+   |
+16 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/editor_service.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+  --> src/async_utils.rs:10:5
+   |
+10 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/theme_engine.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/auth_service.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+  --> src/color_picker.rs:10:5
+   |
+10 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+ --> src/update_service.rs:1:5
+  |
+1 | use napi::bindgen_prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+  --> src/link_detector.rs:10:5
+   |
+10 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+  --> src/word_ops.rs:10:5
+   |
+10 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+  --> src/terminals.rs:11:5
+   |
+11 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+  --> src/ports.rs:10:5
+   |
+10 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `napi::bindgen_prelude`
+  --> src/suggest.rs:10:5
+   |
+10 | use napi::bindgen_prelude::*;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused variable: `port`
+  --> src/network.rs:96:9
+   |
+96 |     let port = parsed.po...
+   |         ^^^^ help: if this is intentional, prefix it with an underscore: `_port`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `e`
+   --> src/fs_watcher.rs:197:20
+    |
+197 | ...Ok(Err(e)) => {
+    |           ^ help: if this is intentional, prefix it with an underscore: `_e`
+
+warning: unused variable: `data`
+    --> src/paths.rs:1927:19
+     |
+1927 | ...vive(data: JsUnknow...
+     |         ^^^^ help: if this is intentional, prefix it with an underscore: `_data`
+
+warning: variable does not need to be mutable
+   --> src/piece_tree.rs:174:13
+    |
+174 | ... let mut node = self...
+    |         ----^^^^
+    |         |
+    |         help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `new_idx`
+   --> src/piece_tree.rs:211:13
+    |
+211 | ... let new_idx = self....
+    |         ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_new_idx`
+
+warning: unused variable: `new_idx`
+   --> src/piece_tree.rs:228:13
+    |
+228 | ... let new_idx = self....
+    |         ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_new_idx`
+
+warning: unused variable: `signal`
+   --> src/terminal_backend.rs:242:40
+    |
+242 | ...u32, signal: u32) ->...
+    |         ^^^^^^ help: if this is intentional, prefix it with an underscore: `_signal`
+
+warning: variable does not need to be mutable
+   --> src/keybinding_resolver.rs:170:13
+    |
+170 | ...et mut candidates: V...
+    |       ----^^^^^^^^^^
+    |       |
+    |       help: remove this `mut`
+
+Some errors have detailed explanations: E0277, E0428, E0432, E0583, E0599.
+For more information about an error, try `rustc --explain E0277`.
+warning: `ride-security` (lib) generated 100 warnings (1 duplicate)
+error: could not compile `ride-security` (lib) due to 18 previous errors; 100 warnings emitted
